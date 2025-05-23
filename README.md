@@ -9,3 +9,6 @@ People who have had the misfortune of experiencing the arrogance of certain prod
 It is for those who know that in order to do something real, the keyword `unsafe` would be used.
 But who were smart enough not to go through repositories and count the unsafe functions to win an online argument.
 They knew a tool would exist for it. This is that tool
+
+## Usage
+Rust MythBuster is currently hosted [here](https://quluseslignux.github.io/rust-mythbuster/).
