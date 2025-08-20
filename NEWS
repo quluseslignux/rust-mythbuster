@@ -1,2 +1,5 @@
+2025.08.20 - Rust MythBuster 0.2 "Clarity"
+* All extern functions are now recognised as unsafe.
+
 2025.05.23 - Rust MythBuster 0.1 "Begin of an Era"
 * First public release of Rust MythBuster.
