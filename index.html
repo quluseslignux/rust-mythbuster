@@ -46,18 +46,20 @@ SPDX-License-Identifier: AGPL3.0-or-later
             async function fetchFileContent(user, repo, path)
             {
                 const url = `https://raw.githubusercontent.com/${user}/${repo}/HEAD/${path}`;
-                const response = await fetch(url);
+                const response = await fetch(url, { keepalive: true });
                 return await response.text();
             }
 
             function countFunctions(code)
             {
                 const funcRegex = /\bfn\s+\w+/g;
+                const externFuncRegex = /\bfn\s+[^{\n]+;/g;
                 const unsafeFuncRegex = /\bunsafe((\sextern.*)|\s)fn/g;
                 const unsafeInFuncRegex = /\bunsafe\s{([^}])*}/g;
                 return {
                     totalFunctions: (code.match(funcRegex) || []).length,
                     unsafeFunctions: (code.match(unsafeFuncRegex) || []).length,
+                    externFuncttions: (code.match(externFuncRegex) || []).length,
                     unsafeInFunctions: (code.match(unsafeInFuncRegex) || []).length,
                 };
             }
@@ -85,6 +87,7 @@ SPDX-License-Identifier: AGPL3.0-or-later
                         const counts = countFunctions(code);
                         total += counts.totalFunctions;
                         unsafe += counts.unsafeFunctions;
+                        unsafe += counts.externFuncttions;
                         unsafe += counts.unsafeInFunctions;
                     }
 
